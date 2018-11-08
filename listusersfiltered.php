@@ -17,10 +17,11 @@ class LUF {
 		add_action('plugins_loaded', array($this, 'init'), 2);
 	}
 	public function init(){
+         
         define( 'LUF_PLUGIN_DIR', __DIR__ );
         define( 'LUF_PLUGIN_URL', plugins_url(null, __FILE__) );
 		//Add Ajax Actions
-		add_action('wp_enqueue_scripts', array( $this, 'enqueue_genre_luf_scripts' ));
+		add_action('wp_enqueue_scripts', array( $this, 'enqueue_luf_ajax_scripts' ));
 		add_action('wp_ajax_luf_ajax_function', array( $this, 'luf_ajax_function'));
 		add_action('wp_ajax_nopriv_luf_ajax_function', array( $this, 'luf_ajax_function'));
         //Includes
@@ -29,6 +30,8 @@ class LUF {
         add_action( 'admin_menu', function () {
         add_menu_page( 'WP Users Filtered', 'WP Users Filtered', 'manage_options', 'wp-listusersfiltered/listusersfiltered.php',   array($this, 'list_table_users_filtered'), 'dashicons-id-alt', 1  );
         } );
+        
+        
 	}
     
     
@@ -38,7 +41,7 @@ class LUF {
 	    //wp_localize_script( 'genre-ajax-js', 'ajax_genre_params', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
 	    //wp_enqueue_script( 'genre-ajax-js' );
         
-        wp_register_script( 'ajaxHandle', plugins_url( plugin_dir_url(__FILE__). 'ajaxSend.js', __FILE__), array( 'jquery'), '', true );
+        wp_register_script( 'ajaxHandle',plugins_url( 'ajaxSend.js', __FILE__), array( 'jquery'), '', true );
         wp_localize_script( 'ajaxHandle', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
         wp_enqueue_script( 'ajaxHandle' );
  
@@ -48,7 +51,8 @@ class LUF {
 
     
     public function list_table_users_filtered() {
-
+      
+ wp_head();
     ?>
     
 
@@ -66,7 +70,7 @@ class LUF {
     </div>
 
     <div class="container">
-        <select class="custom-select luf-cmbFilter" id="cmbRole">
+        <select class="custom-select luf-cmbFilter" id="cmbRole" onchange="callScript(this.value)">
              <option selected disabled>Select role</option>
             <?php foreach ($all_roles as $roleeach): ?>         
             <option value="<?= $roleeach['name'] ?>"><?=  $roleeach['name'] ?></option>
