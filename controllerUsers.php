@@ -1,5 +1,9 @@
 <?php 
 
+add_action( "wp_ajax_myaction", "so_wp_ajax_function" );
+add_action( "wp_ajax_nopriv_myaction", "so_wp_ajax_function" );
+
+function so_wp_ajax_function(){
 if(isset($_POST['role'])){
     $role = $_POST['role'];
 }else{
@@ -50,7 +54,11 @@ if(isset($_POST['role'])){
             ?>
             </tbody>
         </table> 
-
+<?php
+    
+    wp_die();
+}
+?>
 
 
 
