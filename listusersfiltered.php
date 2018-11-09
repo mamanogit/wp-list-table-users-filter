@@ -22,15 +22,14 @@ class LUF {
         define( 'LUF_PLUGIN_URL', plugins_url(null, __FILE__) );
 		//Add Ajax Actions
 		add_action('wp_enqueue_scripts', array( $this, 'enqueue_luf_ajax_scripts' ));
-		add_action('wp_ajax_luf_ajax_function', array( $this, 'luf_ajax_function'));
-		add_action('wp_ajax_nopriv_luf_ajax_function', array( $this, 'luf_ajax_function'));
+		add_action('wp_ajax_luf_function', array( $this, 'ajax_luf_function'));
+		add_action('wp_ajax_nopriv_luf_function', array( $this, 'ajax_luf_function'));
         //Includes
         require_once LUF_PLUGIN_DIR . '/_inc/include.php';
         
         add_action( 'admin_menu', function () {
         add_menu_page( 'WP Users Filtered', 'WP Users Filtered', 'manage_options', 'wp-listusersfiltered/listusersfiltered.php',   array($this, 'list_table_users_filtered'), 'dashicons-id-alt', 1  );
         } );
-        
         
 	}
     
@@ -42,7 +41,7 @@ class LUF {
 	    //wp_enqueue_script( 'genre-ajax-js' );
         
         wp_register_script( 'ajaxHandle',plugins_url( 'ajaxSend.js', __FILE__), array( 'jquery'), '', true );
-        wp_localize_script( 'ajaxHandle', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+        wp_localize_script( 'ajaxHandle', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )) );
         wp_enqueue_script( 'ajaxHandle' );
  
 	}
@@ -80,7 +79,10 @@ class LUF {
             
 
         <hr />
-
+        
+            <div id="divAppend">
+                
+            </div>   
     
     </div>
    
@@ -90,7 +92,8 @@ class LUF {
     
     
     
-    function luf_ajax_function(){
+   public function ajax_luf_function(){
+       global $wpdb;
             if(isset($_POST['role'])){
                     $role = $_POST['role'];
             }else{
@@ -98,9 +101,9 @@ class LUF {
             }
 
 
-
+echo "Role selected: " . var_dump($role);
 ?>
-
+        
     <table class="table">
             <thead>
             <tr>
