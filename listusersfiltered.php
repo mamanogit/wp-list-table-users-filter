@@ -50,15 +50,14 @@ class LUF {
 
     
     public function list_table_users_filtered() {
-      
- wp_head();
+        wp_head();
     ?>
     
 
 
-    <div class="alert alert-primary" role="alert">
+    <h2 class="wp-heading-inline">
         WP Users Filtered
-    </div>
+    </h2>
     
     <div>
        <?php    
@@ -69,16 +68,23 @@ class LUF {
     </div>
 
     <div class="container">
-        <select class="custom-select luf-cmbFilter" id="cmbRole" onchange="callScript(this.value)">
-             <option selected disabled>Select role</option>
-            <?php foreach ($all_roles as $roleeach): ?>         
-            <option value="<?= $roleeach['name'] ?>"><?=  $roleeach['name'] ?></option>
-            <?php
-                endforeach; ?>
-        </select
+        <div class="tablenav top">
+            <div class="alignleft actions bulkactions">
+                <!-- onchange="callScript(this.value)" -->
+                <select class="" id="cmbRole" >
+                    <option selected disabled>Select role</option>
+                    <?php foreach ($all_roles as $roleeach): ?>
+                        <option value="<?= $roleeach['name'] ?>"><?=  $roleeach['name'] ?></option>
+                    <?php
+                    endforeach; ?>
+                </select>
+                <br />
+            </div>
+        </div>
+
+
             
 
-        <hr />
         
             <div id="divAppend">
                 
@@ -93,6 +99,8 @@ class LUF {
     
     
    public function ajax_luf_function(){
+
+
        global $wpdb;
             if(isset($_POST['role'])){
                     $role = $_POST['role'];
@@ -102,9 +110,24 @@ class LUF {
 
 
 //echo "Role selected: " . var_dump($role);
-?>
-        
-    <table class="table">
+       //$users = get_users( [ 'role__in' => [ 'subscriber', 'subscriber', 'author' ] ] );
+       $args = array(
+           'role'         => '',
+           'role__in'     => $role,
+           'role__not_in' => array(),
+           'meta_query'   => array(),
+           'date_query'   => array(),
+           'include'      => array(),
+           'exclude'      => array(),
+           'orderby'      => 'id',
+           'order'        => 'asc',
+       );
+       $allusers =  get_users($args);
+       ?>
+       <div class="tablenav-pages one-page alignright">
+           <span class="displaying-num"><?= count($allusers) ?> usuários</span>
+        </div>
+    <table class="wp-list-table widefat fixed striped pages">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -114,20 +137,8 @@ class LUF {
             </tr>
             </thead>
             <tbody>
+
     <?php
-    //$users = get_users( [ 'role__in' => [ 'subscriber', 'subscriber', 'author' ] ] );
-    $args = array(
-        'role'         => '',
-        'role__in'     => $role,
-        'role__not_in' => array(),
-        'meta_query'   => array(),
-        'date_query'   => array(),
-        'include'      => array(),
-        'exclude'      => array(),
-        'orderby'      => 'id',
-        'order'        => 'asc',
-    );
-    $allusers =  get_users($args);
         foreach ($allusers as $usereach) {
             ?>
             <tr>

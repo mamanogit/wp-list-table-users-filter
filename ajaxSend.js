@@ -1,14 +1,13 @@
 
 
-     
-  function callScript(val){
+(function($) {
+ // function callScript(val){
+ $('#cmbRole').on('change', function(){
 
-
-            jQuery(function($) {
                       
 		              var data = {
 			         'action': 'luf_function',
-			         'role':     val
+			         'role':     $('#cmbRole').val()
                     };
 
 
@@ -16,14 +15,20 @@
                 console.log('role: ' + data.role);
                 console.log('jquery: ' + $ );
 
-		          // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-                $.post( ajax_object.ajaxurl, data, function(response) {
 
-                      //  console.log('ajaxobj: ' + ajax_object.ajaxurl)
-                        //			         console.log('Got this from the server: ' + response);
-                    $('#divAppend').html(response);
-		          }   );
+                $.ajax({
+                    url: ajax_object.ajaxurl,
+                    type: 'post',
+                    data: data,
+                    success: function( response ) {
+                        $('#divAppend').html(response);
+                    }
+                })
+
+
+
+		          // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+
 	           });
 
-
-}
+})(jQuery);
