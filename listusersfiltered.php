@@ -43,7 +43,7 @@ class LUF {
         wp_register_script( 'ajaxHandle',plugins_url( 'ajaxSend.js', __FILE__), array( 'jquery'), '', true );
         wp_localize_script( 'ajaxHandle', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )) );
         wp_enqueue_script( 'ajaxHandle' );
- 
+
 	}
     
   
@@ -101,7 +101,7 @@ class LUF {
             }
 
 
-echo "Role selected: " . var_dump($role);
+//echo "Role selected: " . var_dump($role);
 ?>
         
     <table class="table">
@@ -118,7 +118,7 @@ echo "Role selected: " . var_dump($role);
     //$users = get_users( [ 'role__in' => [ 'subscriber', 'subscriber', 'author' ] ] );
     $args = array(
         'role'         => '',
-        'role__in'     => array(),
+        'role__in'     => $role,
         'role__not_in' => array(),
         'meta_query'   => array(),
         'date_query'   => array(),
