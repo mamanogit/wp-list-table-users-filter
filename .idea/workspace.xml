@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1ebb3538-2ab6-463e-928e-28824a252dba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_inc/include.php" beforeDir="false" afterPath="$PROJECT_DIR$/_inc/include.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ajaxSend.js" beforeDir="false" afterPath="$PROJECT_DIR$/ajaxSend.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/listusersfiltered.php" beforeDir="false" afterPath="$PROJECT_DIR$/listusersfiltered.php" afterDir="false" />
     </list>
@@ -16,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="listusersfiltered.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="listusersfiltered.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="85" column="21" lean-forward="true" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+            <state relative-caret-position="-927">
+              <caret line="367" column="32" lean-forward="true" selection-start-line="367" selection-start-column="32" selection-end-line="367" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -34,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ajaxSend.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ajaxSend.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ajaxSend.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+            <state relative-caret-position="338">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
@@ -49,6 +48,7 @@
     <findStrings>
       <find>&lt;?=</find>
       <find>prepare_items</find>
+      <find>_ajax_fetch_custom_list_callback</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -58,8 +58,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/_inc/include.php" />
-        <option value="$PROJECT_DIR$/ajaxSend.js" />
         <option value="$PROJECT_DIR$/listusersfiltered.php" />
+        <option value="$PROJECT_DIR$/ajaxSend.js" />
       </list>
     </option>
   </component>
@@ -83,6 +83,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -99,7 +100,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -130,18 +130,19 @@
       <option name="presentableId" value="Default" />
       <updated>1541974206062</updated>
       <workItem from="1541974214353" duration="14156000" />
-      <workItem from="1542628116925" duration="5150000" />
+      <workItem from="1542628116925" duration="7920000" />
+      <workItem from="1542640570041" duration="2664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19306000" />
+    <option name="totallyTimeSpent" value="24740000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14485294" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14485294" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -150,7 +151,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.22416534" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.22416534" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -170,10 +171,31 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="73" column="60" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_inc/include.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ajaxSend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="969">
@@ -189,13 +211,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllerUsers.php" />
-    <entry file="file://$PROJECT_DIR$/ajaxSend.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_inc/include.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -205,8 +220,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="85" column="21" lean-forward="true" selection-start-line="85" selection-start-column="21" selection-end-line="85" selection-end-column="21" />
+        <state relative-caret-position="-927">
+          <caret line="367" column="32" lean-forward="true" selection-start-line="367" selection-start-column="32" selection-end-line="367" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ajaxSend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
