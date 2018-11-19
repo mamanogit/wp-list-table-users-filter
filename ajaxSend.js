@@ -11,17 +11,20 @@
                     };
 
 
-                console.log('action: ' + data.action);
-                console.log('role: ' + data.role);
-                console.log('jquery: ' + $ );
+                //console.log('action: ' + data.action);
+                //console.log('role: ' + data.role);
+                //console.log('jquery: ' + $ );
 
 
                 $.ajax({
-                    url: ajax_object.ajaxurl,
+                    url: ajaxurl,
                     type: 'post',
                     data: data,
                     success: function( response ) {
                         $('#divAppend').html(response);
+                    },
+                    error: function(error){
+                        console.log(error);
                     }
                 })
 

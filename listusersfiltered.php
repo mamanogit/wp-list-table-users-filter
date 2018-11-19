@@ -50,8 +50,8 @@ class LUF {
 
     
     public function list_table_users_filtered() {
-        wp_head();
-    ?>
+        $this->enqueue_luf_ajax_scripts();
+        ?>
     
 
 
@@ -67,25 +67,20 @@ class LUF {
         ?>
     </div>
 
-    <div class="container">
+
         <div class="tablenav top">
             <div class="alignleft actions bulkactions">
                 <!-- onchange="callScript(this.value)" -->
                 <select class="" id="cmbRole" >
                     <option selected disabled>Select role</option>
                     <?php foreach ($all_roles as $roleeach): ?>
-                        <option value="<?= $roleeach['name'] ?>"><?=  $roleeach['name'] ?></option>
+                        <option value="<?php echo $roleeach['name'] ?>"><?php echo $roleeach['name'] ?></option>
                     <?php
                     endforeach; ?>
                 </select>
                 <br />
             </div>
-        </div>
 
-
-            
-
-        
             <div id="divAppend">
                 
             </div>   
@@ -125,7 +120,7 @@ class LUF {
        $allusers =  get_users($args);
        ?>
        <div class="tablenav-pages one-page alignright">
-           <span class="displaying-num"><?= count($allusers) ?> usuários</span>
+           <span class="displaying-num"><?php echo count($allusers) ?> usuários</span>
         </div>
     <table class="wp-list-table widefat fixed striped pages">
             <thead>
@@ -143,10 +138,10 @@ class LUF {
             ?>
             <tr>
 
-                <th scope="row"><?= $usereach->ID ?></th>
-                <td><?= $usereach->user_nicename ?></td>
-                <td><?= $usereach->user_email ?></td>
-                <td><?= implode(', ', get_userdata($usereach->ID)->roles)  . "\n" ?></td>
+                <th scope="row"><?php echo $usereach->ID ?></th>
+                <td><?php echo $usereach->user_nicename ?></td>
+                <td><?php echo $usereach->user_email ?></td>
+                <td><?php echo implode(', ', get_userdata($usereach->ID)->roles)  . "\n" ?></td>
 
 
             </tr>
@@ -154,7 +149,7 @@ class LUF {
         }
             ?>
             </tbody>
-        </table> 
+        </table>
 <?php
     
     wp_die();
@@ -167,3 +162,6 @@ class LUF {
 
 new LUF();
 ?>
+
+
+
