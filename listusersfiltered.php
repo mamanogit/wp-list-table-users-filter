@@ -24,16 +24,21 @@ class LUF {
 		add_action('wp_enqueue_scripts', array( $this, 'enqueue_luf_ajax_scripts' ));
 		add_action('wp_ajax_luf_function', array( $this, 'ajax_luf_function'));
 		add_action('wp_ajax_nopriv_luf_function', array( $this, 'ajax_luf_function'));
+
+
         //Includes
         require_once LUF_PLUGIN_DIR . '/_inc/include.php';
-        
+
+
+
         add_action( 'admin_menu', function () {
-        add_menu_page( 'WP Users Filtered', 'WP Users Filtered', 'manage_options', 'wp-listusersfiltered/listusersfiltered.php',   array($this, 'list_table_users_filtered'), 'dashicons-id-alt', 1  );
+        add_menu_page( 'WP Users Filtered', 'WP Users Filtered', 'manage_options', 'wp-listusersfiltered',   array($this, 'list_table_users_filtered'), 'dashicons-id-alt', 1  );
         } );
         
 	}
-    
-    
+
+
+
 	//EnqueueScripts
 	public function enqueue_luf_ajax_scripts() {
 	    //wp_register_script( 'genre-ajax-js', plugin_dir_url(__FILE__). 'genre.js', array( 'jquery' ), '', true );
@@ -54,7 +59,7 @@ class LUF {
         ?>
     
 
-
+<div class="wrap">
     <h2 class="wp-heading-inline">
         WP Users Filtered
     </h2>
@@ -86,7 +91,7 @@ class LUF {
             </div>   
     
     </div>
-   
+</div>
     <?php
 }
   
@@ -97,15 +102,17 @@ class LUF {
        $wpgenListTable = new WPGEN_List_Table();
        $wpgenListTable->prepare_items();
        ?>
-       <div class="wrap">
+
+           <form id="users-filter" method="get">
+               <!-- For plugins, we also need to ensure that the form posts back to our current page -->
+               <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
            <?php $wpgenListTable->display(); ?>
-       </div>
+           </form>
        <?php
-    
     wp_die();
     }
 
-    
+
 } //endclass
 
 
@@ -113,10 +120,16 @@ class LUF {
 new LUF();
 
 
+
+
+
+
+
 // WP_List_Table is not loaded automatically so we need to load it in our application
 if( ! class_exists( 'WP_List_Table' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
+error_reporting( ~E_NOTICE );
 /**
  * Create a new table class that will extend the WP_List_Table
  */
@@ -124,7 +137,7 @@ class WPGEN_List_Table extends WP_List_Table
 {
 
 
-    function __construct() {
+    public function __construct() {
 
         global $status, $page;
 
@@ -132,9 +145,9 @@ class WPGEN_List_Table extends WP_List_Table
         parent::__construct(
             array(
                 //singular name of the listed records
-                'singular'  => 'user',
+                'singular'  => '',
                 //plural name of the listed records
-                'plural'    => 'users',
+                'plural'    => '',
                 //does this table support ajax?
                 'ajax'      => true
             )
@@ -143,9 +156,9 @@ class WPGEN_List_Table extends WP_List_Table
     }
 
 
-    function display() {
+    public function display() {
 
-        wp_nonce_field( 'ajax-custom-list-nonce', '_ajax_custom_list_nonce' );
+       echo wp_nonce_field( 'ajax-custom-list-nonce', '_ajax_custom_list_nonce' );
 
         echo '<input id="order" type="hidden" name="order" value="' . $this->_pagination_args['order'] . '" />';
         echo '<input id="orderby" type="hidden" name="orderby" value="' . $this->_pagination_args['orderby'] . '" />';
@@ -153,7 +166,8 @@ class WPGEN_List_Table extends WP_List_Table
         parent::display();
     }
 
-    function ajax_response() {
+
+    public function ajax_response() {
 
         check_ajax_referer( 'ajax-custom-list-nonce', '_ajax_custom_list_nonce' );
 
@@ -344,161 +358,151 @@ class WPGEN_List_Table extends WP_List_Table
         }
         return -$result;
     }
+
+
 }
 
-
-
+/**
+ * Callback function for 'wp_ajax__ajax_fetch_custom_list' action hook.
+ *
+ * Loads the Custom List Table Class and calls ajax_response method
+ */
 function _ajax_fetch_custom_list_callback() {
-
     $wpgenListTable = new WPGEN_List_Table();
     $wpgenListTable->ajax_response();
 }
 add_action('wp_ajax__ajax_fetch_custom_list', '_ajax_fetch_custom_list_callback');
+/**
+ * This function adds the jQuery script to the plugin's page footer
+ */
+function ajax_script() {
 
-function fetch_ts_script() {
-?>
-
-<script type="text/javascript">
-
-(function($) {
-
-    list = {
-
-        /**
-         * Register our triggers
-         *
-         * We want to capture clicks on specific links, but also value change in
-         * the pagination input field. The links contain all the information we
-         * need concerning the wanted page number or ordering, so we'll just
-         * parse the URL to extract these variables.
-         *
-         * The page number input is trickier: it has no URL so we have to find a
-         * way around. We'll use the hidden inputs added in TT_Example_List_Table::display()
-         * to recover the ordering variables, and the default paged input added
-         * automatically by WordPress.
-         */
-        init: function() {
-
-            // This will have its utility when dealing with the page number input
-            var timer;
-            var delay = 500;
-
-            // Pagination links, sortable link
-            $('.tablenav-pages a, .manage-column.sortable a, .manage-column.sorted a').on('click', function(e) {
-                // We don't want to actually follow these links
-                e.preventDefault();
-                // Simple way: use the URL to extract our needed variables
-                var query = this.search.substring( 1 );
-
-                var data = {
-                    paged: list.__query( query, 'paged' ) || '1',
-                    order: list.__query( query, 'order' ) || 'asc',
-                    orderby: list.__query( query, 'orderby' ) || 'nicename'
-                };
-                list.update( data );
+    ?>
+    <script type="text/javascript">
+        (function($) {
+            jQuery('.tablenav-pages a, .manage-column.sortable a, .manage-column.sorted a').on('click', function(e) {
+                alert('teste');
             });
 
-            // Page number input
-            $('input[name=paged]').on('keyup', function(e) {
+            list = {
+                /**
+                 * Register our triggers
+                 *
+                 * We want to capture clicks on specific links, but also value change in
+                 * the pagination input field. The links contain all the information we
+                 * need concerning the wanted page number or ordering, so we'll just
+                 * parse the URL to extract these variables.
+                 *
+                 * The page number input is trickier: it has no URL so we have to find a
+                 * way around. We'll use the hidden inputs added in TT_Example_List_Table::display()
+                 * to recover the ordering variables, and the default paged input added
+                 * automatically by WordPress.
+                 */
+                init: function() {
+                    // This will have its utility when dealing with the page number input
+                    var timer;
+                    var delay = 500;
+                    // Pagination links, sortable link
+                    jQuery('.tablenav-pages a, .manage-column.sortable a, .manage-column.sorted a').on('click', function(e) {
+                        alert('teste');
+                        // We don't want to actually follow these links
+                        e.preventDefault();
+                        // Simple way: use the URL to extract our needed variables
+                        var query = this.search.substring( 1 );
 
-                // If user hit enter, we don't want to submit the form
-                // We don't preventDefault() for all keys because it would
-                // also prevent to get the page number!
-                if ( 13 == e.which )
-                    e.preventDefault();
-
-                // This time we fetch the variables in inputs
-                var data = {
-                    paged: parseInt( $('input[name=paged]').val() ) || '1',
-                    order: $('input[name=order]').val() || 'asc',
-                    orderby: $('input[name=orderby]').val() || 'nicename'
-                };
-
-                // Now the timer comes to use: we wait half a second after
-                // the user stopped typing to actually send the call. If
-                // we don't, the keyup event will trigger instantly and
-                // thus may cause duplicate calls before sending the intended
-                // value
-                window.clearTimeout( timer );
-                timer = window.setTimeout(function() {
-                    list.update( data );
-                }, delay);
-            });
-        },
-
-        /** AJAX call
-         *
-         * Send the call and replace table parts with updated version!
-         *
-         * @param    object    data The data to pass through AJAX
-         */
-        update: function( data ) {
-            $.ajax({
-                // /wp-admin/admin-ajax.php
-                url: ajaxurl,
-                // Add action and nonce to our collected data
-                data: $.extend(
-                    {
-                        _ajax_custom_list_nonce: $('#_ajax_custom_list_nonce').val(),
-                        action: '_ajax_fetch_custom_list',
-                    },
-                    data
-                ),
-                // Handle the successful result
-                success: function( response ) {
-
-                    // WP_List_Table::ajax_response() returns json
-                    var response = $.parseJSON( response );
-
-                    // Add the requested rows
-                    if ( response.rows.length )
-                        $('#the-list').html( response.rows );
-                    // Update column headers for sorting
-                    if ( response.column_headers.length )
-                        $('thead tr, tfoot tr').html( response.column_headers );
-                    // Update pagination for navigation
-                    if ( response.pagination.bottom.length )
-                        $('.tablenav.top .tablenav-pages').html( $(response.pagination.top).html() );
-                    if ( response.pagination.top.length )
-                        $('.tablenav.bottom .tablenav-pages').html( $(response.pagination.bottom).html() );
-
-                    // Init back our event handlers
-                    list.init();
-                }
-            });
-        },
-
-        /**
-         * Filter the URL Query to extract variables
-         *
-         * @see http://css-tricks.com/snippets/javascript/get-url-variables/
-         *
-         * @param    string    query The URL query part containing the variables
-         * @param    string    variable Name of the variable we want to get
-         *
-         * @return   string|boolean The variable value if available, false else.
-         */
-        __query: function( query, variable ) {
-
-            var vars = query.split("&");
-            for ( var i = 0; i <vars.length; i++ ) {
-                var pair = vars[ i ].split("=");
-                if ( pair[0] == variable )
-                    return pair[1];
+                        var data = {
+                            paged: list.__query( query, 'paged' ) || '1',
+                            order: list.__query( query, 'order' ) || 'asc',
+                            orderby: list.__query( query, 'orderby' ) || 'title'
+                        };
+                        list.update( data );
+                    });
+                    // Page number input
+                    $('input[name=paged]').on('keyup', function(e) {
+                        // If user hit enter, we don't want to submit the form
+                        // We don't preventDefault() for all keys because it would
+                        // also prevent to get the page number!
+                        if ( 13 == e.which )
+                            e.preventDefault();
+                        // This time we fetch the variables in inputs
+                        var data = {
+                            paged: parseInt( $('input[name=paged]').val() ) || '1',
+                            order: $('input[name=order]').val() || 'asc',
+                            orderby: $('input[name=orderby]').val() || 'title'
+                        };
+                        // Now the timer comes to use: we wait half a second after
+                        // the user stopped typing to actually send the call. If
+                        // we don't, the keyup event will trigger instantly and
+                        // thus may cause duplicate calls before sending the intended
+                        // value
+                        window.clearTimeout( timer );
+                        timer = window.setTimeout(function() {
+                            list.update( data );
+                        }, delay);
+                    });
+                },
+                /** AJAX call
+                 *
+                 * Send the call and replace table parts with updated version!
+                 *
+                 * @param    object    data The data to pass through AJAX
+                 */
+                update: function( data ) {
+                    $.ajax({
+                        // /wp-admin/admin-ajax.php
+                        url: ajaxurl,
+                        // Add action and nonce to our collected data
+                        data: $.extend(
+                            {
+                                _ajax_custom_list_nonce: $('#_ajax_custom_list_nonce').val(),
+                                action: '_ajax_fetch_custom_list',
+                            },
+                            data
+                        ),
+                        // Handle the successful result
+                        success: function( response ) {
+                            // WP_List_Table::ajax_response() returns json
+                            var response = $.parseJSON( response );
+                            // Add the requested rows
+                            if ( response.rows.length )
+                                $('#the-list').html( response.rows );
+                            // Update column headers for sorting
+                            if ( response.column_headers.length )
+                                $('thead tr, tfoot tr').html( response.column_headers );
+                            // Update pagination for navigation
+                            if ( response.pagination.bottom.length )
+                                $('.tablenav.top .tablenav-pages').html( $(response.pagination.top).html() );
+                            if ( response.pagination.top.length )
+                                $('.tablenav.bottom .tablenav-pages').html( $(response.pagination.bottom).html() );
+                            // Init back our event handlers
+                            list.init();
+                        }
+                    });
+                },
+                /**
+                 * Filter the URL Query to extract variables
+                 *
+                 * @see http://css-tricks.com/snippets/javascript/get-url-variables/
+                 *
+                 * @param    string    query The URL query part containing the variables
+                 * @param    string    variable Name of the variable we want to get
+                 *
+                 * @return   string|boolean The variable value if available, false else.
+                 */
+                __query: function( query, variable ) {
+                    var vars = query.split("&");
+                    for ( var i = 0; i <vars.length; i++ ) {
+                        var pair = vars[ i ].split("=");
+                        if ( pair[0] == variable )
+                            return pair[1];
+                    }
+                    return false;
+                },
             }
-            return false;
-        },
-    }
-
 // Show time!
-    list.init();
-
-})(jQuery);
-
-</script>
+            list.init();
+        })(jQuery);
+    </script>
     <?php
 }
-add_action('admin_footer', 'fetch_ts_script');
-
-
-
+add_action('admin_footer', 'ajax_script');
