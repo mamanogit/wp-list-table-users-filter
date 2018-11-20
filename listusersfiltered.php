@@ -60,9 +60,9 @@ class LUF {
     
 
 <div class="wrap">
-    <h2 class="wp-heading-inline">
+    <h1 class="wp-heading-inline">
         WP Users Filtered
-    </h2>
+    </h1>
     
     <div>
        <?php    
