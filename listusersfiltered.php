@@ -27,7 +27,7 @@ class LUF {
 
 
         //Includes
-        require_once LUF_PLUGIN_DIR . '/_inc/include.php';
+        require_once LUF_PLUGIN_DIR . '/includes/include.php';
 
 
 
@@ -41,10 +41,6 @@ class LUF {
 
 	//EnqueueScripts
 	public function enqueue_luf_ajax_scripts() {
-	    //wp_register_script( 'genre-ajax-js', plugin_dir_url(__FILE__). 'genre.js', array( 'jquery' ), '', true );
-	    //wp_localize_script( 'genre-ajax-js', 'ajax_genre_params', array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
-	    //wp_enqueue_script( 'genre-ajax-js' );
-        
         wp_register_script( 'ajaxHandle',plugins_url( 'ajaxSend.js', __FILE__), array( 'jquery'), '', true );
         wp_localize_script( 'ajaxHandle', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )) );
         wp_enqueue_script( 'ajaxHandle' );
@@ -56,43 +52,8 @@ class LUF {
     
     public function list_table_users_filtered() {
         $this->enqueue_luf_ajax_scripts();
-        ?>
-    
 
-<div class="wrap">
-    <h1 class="wp-heading-inline">
-        WP Users Filtered
-    </h1>
-    
-    <div>
-       <?php    
-    global $wp_roles;
-    $all_roles = $wp_roles->roles;
-    //echo "<pre>" . var_dump($all_roles); "</pre>";
-        ?>
-    </div>
-
-
-        <div class="tablenav top">
-            <div class="alignleft actions bulkactions">
-                <!-- onchange="callScript(this.value)" -->
-                <select class="" id="cmbRole" >
-                    <option selected disabled>Select role</option>
-                    <?php foreach ($all_roles as $roleeach): ?>
-                        <option value="<?php echo $roleeach['name'] ?>"><?php echo $roleeach['name'] ?></option>
-                    <?php
-                    endforeach; ?>
-                </select>
-                <br />
-            </div>
-
-            <div id="divAppend">
-                
-            </div>   
-    
-    </div>
-</div>
-    <?php
+        include dirname( __FILE__ ) . '/views/viewMain.php';
 }
   
     
@@ -101,15 +62,10 @@ class LUF {
    public function ajax_luf_function(){
        $wpgenListTable = new WPGEN_List_Table();
        $wpgenListTable->prepare_items();
-       ?>
 
-           <form id="users-filter" method="get">
-               <!-- For plugins, we also need to ensure that the form posts back to our current page -->
-               <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
-           <?php $wpgenListTable->display(); ?>
-           </form>
-       <?php
-    wp_die();
+       include dirname( __FILE__ ) . '/views/_viewTable.php';
+
+       wp_die();
     }
 
 
