@@ -14,16 +14,20 @@
         // Pagination links, sortable link
         function callTableActionsAjax() {
             // Simple way: use the URL to extract our needed variables
-            var query = e.currentTarget.href;
+            var urlcurrent = e.currentTarget.href;
+            var urlquery = new URL(urlcurrent);
+            urlquery  = urlquery.search.substr(1);
 
+            console.log(urlquery);
             var data = {
-                paged: list.__query( query, 'paged' ) || '1',
-                order: list.__query( query, 'order' ) || 'asc',
-                orderby: list.__query( query, 'orderby' ) || 'nicename'
+                paged: list.__query( urlquery, 'paged' ) || '1',
+                order: list.__query( urlquery, 'order' ) || 'asc',
+                orderby: list.__query( urlquery, 'orderby' ) || 'nicename'
             };
-            console.log(query);
             console.log(data);
-            //list.update( data );
+
+
+            list.update( data );
         };
     });
 </script>

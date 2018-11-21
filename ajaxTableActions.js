@@ -70,6 +70,7 @@
                 // Handle the successful result
                 success: function( response ) {
                     // WP_List_Table::ajax_response() returns json
+                    console.log(response);
                     var response = $.parseJSON( response );
                     // Add the requested rows
                     if ( response.rows.length )

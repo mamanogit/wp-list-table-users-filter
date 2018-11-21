@@ -333,6 +333,5 @@ function ajax_fetch_custom_list_callback() {
     $wpgenListTable = new WPGEN_List_Table();
     $wpgenListTable->ajax_response();
 }
-//add_action('wp_ajax__ajax_fetch_custom_list', 'ajax_fetch_custom_list_callback');
 add_action('wp_ajax_fetch_custom_list_callback', 'ajax_fetch_custom_list_callback');
 add_action('wp_ajax_nopriv_fetch_custom_list_callback', 'ajax_fetch_custom_list_callback');
