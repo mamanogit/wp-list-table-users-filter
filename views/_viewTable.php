@@ -7,6 +7,7 @@
     <input type="hidden" name="page" id="paged" value="<?php echo $pagedView ?>" />
 
     <?php $wpgenListTable->display(); ?>
+
 </form>
 <script type="text/javascript">
     jQuery('.manage-column.sortable a, .manage-column.sorted a').on('click', function(e) {

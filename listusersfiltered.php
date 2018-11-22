@@ -113,7 +113,7 @@ class WPGEN_List_Table extends WP_List_Table
         $data = $this->table_data();
 
         usort( $data, array( &$this, 'sort_data' ) );
-        $perPage = 20;
+        $perPage = 5;
 
 
        $currentPage = $this->get_pagenum();
@@ -125,7 +125,7 @@ class WPGEN_List_Table extends WP_List_Table
             'total_items' => $totalItems,
             'per_page'    => $perPage,
             'total_pages'   => ceil( $totalItems / $perPage ),
-            'paged'          =>  isset($_POST['args']['paged']) ? max(0, intval($_POST['args']['paged'] -1) * 20) : 0,
+            'paged'          =>  isset($_POST['args']['paged']) ? max(0, intval($_POST['args']['paged'] -1) * 5) : 0,
             // Set ordering values if needed (useful for AJAX)
             'orderby'   => ! empty( $_POST['args']['orderby'] ) && '' != $_POST['args']['orderby']? $_POST['args']['orderby'] : 'nicename',
             'order'     => ! empty( $_POST['args']['order'] ) && '' != $_POST['args']['order'] ? $_POST['args']['order'] : 'asc'
@@ -134,6 +134,15 @@ class WPGEN_List_Table extends WP_List_Table
         $data = array_slice($data,(($currentPage-1)*$perPage),$perPage);
         $this->_column_headers = array($columns, $hidden, $sortable);
         $this->items = $data;
+    }
+
+
+    public function get_pagenum() {
+        $pagenum = isset( $_POST['args']['paged'] ) ? absint( $_POST['args']['paged'] ) : 0;
+        if ( isset( $this->_pagination_args['total_pages'] ) && $pagenum > $this->_pagination_args['total_pages'] ) {
+            $pagenum = $this->_pagination_args['total_pages'];
+        }
+        return max( 1, $pagenum );
     }
     /**
      * Override the parent columns method. Defines the columns to use in your listing table
@@ -195,6 +204,7 @@ class WPGEN_List_Table extends WP_List_Table
         }
 
 
+        echo "<pre>PASSOU AQUI " . $_POST['args']['paged'] . " </pre>";
         $args = array(
             'role'         => '',
             'role__in'     => $role,
