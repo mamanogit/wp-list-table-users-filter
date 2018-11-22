@@ -203,8 +203,6 @@ class WPGEN_List_Table extends WP_List_Table
             $orderby = 'nicename';
         }
 
-
-        echo "<pre>PASSOU AQUI " . $_POST['args']['paged'] . " </pre>";
         $args = array(
             'role'         => '',
             'role__in'     => $role,

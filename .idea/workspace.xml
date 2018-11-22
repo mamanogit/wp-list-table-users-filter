@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ebb3538-2ab6-463e-928e-28824a252dba" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/listusersfiltered.php" beforeDir="false" afterPath="$PROJECT_DIR$/listusersfiltered.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/_viewTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/_viewTable.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +16,8 @@
       <file leaf-file-name="listusersfiltered.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+            <state relative-caret-position="334">
+              <caret line="204" column="8" selection-start-line="204" selection-start-column="8" selection-end-line="204" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -188,12 +186,12 @@
       <workItem from="1542640570041" duration="4163000" />
       <workItem from="1542714752234" duration="13071000" />
       <workItem from="1542800742218" duration="35348000" />
-      <workItem from="1542891760553" duration="2259000" />
+      <workItem from="1542891760553" duration="2355000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76917000" />
+    <option name="totallyTimeSpent" value="77013000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -407,8 +405,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+        <state relative-caret-position="334">
+          <caret line="204" column="8" selection-start-line="204" selection-start-column="8" selection-end-line="204" selection-end-column="8" />
         </state>
       </provider>
     </entry>
