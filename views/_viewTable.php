@@ -22,6 +22,9 @@
         callTablePaginationAjax(e);
     });
 
+
+    jQuery('#current-page-selector')[0].disabled = true;
+    //NO WORKING
     jQuery('#paged').on('keyup', function (e) {
         e.preventDefault();
         if (13 == e.which){
