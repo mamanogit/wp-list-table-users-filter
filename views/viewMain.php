@@ -28,6 +28,7 @@
         <div id="divAppend">
 
         </div>
+        <input type="hidden" name="myOrder" id="myOrder" value="asc" />
 
     </div>
 </div>

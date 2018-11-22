@@ -8,11 +8,8 @@ Version: 0.1.0
 License: MIT
 */
 
-
 class LUF {
-    
-   
-    
+
 	public function __construct(){
 		add_action('plugins_loaded', array($this, 'init'), 2);
 	}
@@ -26,20 +23,13 @@ class LUF {
 		add_action('wp_ajax_luf_function', array( $this, 'ajax_luf_function'));
 		add_action('wp_ajax_nopriv_luf_function', array( $this, 'ajax_luf_function'));
 
-
-
         //Includes
         require_once LUF_PLUGIN_DIR . '/includes/include.php';
-
-
 
         add_action( 'admin_menu', function () {
         add_menu_page( 'WP Users Filtered', 'WP Users Filtered', 'manage_options', 'wp-listusersfiltered',   array($this, 'list_table_users_filtered'), 'dashicons-id-alt', 1  );
         } );
-        
 	}
-
-
 
 	//EnqueueScripts
 	public function enqueue_luf_ajax_scripts() {
@@ -48,23 +38,14 @@ class LUF {
         wp_enqueue_script( 'ajaxHandle' );
 
 
-        wp_register_script( 'ajaxHandleWPTABLE',plugins_url( 'ajaxTableActions.js', __FILE__), array( 'jquery'), '', true );
-        wp_localize_script( 'ajaxHandleWPTABLE', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )) );
-        wp_enqueue_script( 'ajaxHandleWPTABLE' );
 	}
-    
-  
 
-    
     public function list_table_users_filtered() {
        // $this->enqueue_luf_ajax_scripts();
 
         include dirname( __FILE__ ) . '/views/viewMain.php';
 }
-  
-    
-    
-    
+
    public function ajax_luf_function(){
        $wpgenListTable = new WPGEN_List_Table();
        $wpgenListTable->prepare_items();
@@ -74,18 +55,11 @@ class LUF {
        wp_die();
     }
 
-
 } //endclass
-
-
 
 new LUF();
 
-
-
-
-
-
+//////////END LUF /////////////
 
 // WP_List_Table is not loaded automatically so we need to load it in our application
 if( ! class_exists( 'WP_List_Table' ) ) {
@@ -97,7 +71,6 @@ error_reporting( ~E_NOTICE );
  */
 class WPGEN_List_Table extends WP_List_Table
 {
-
 
     public function __construct() {
 
@@ -114,9 +87,7 @@ class WPGEN_List_Table extends WP_List_Table
                 'ajax'      => true
             )
         );
-
     }
-
 
     public function display() {
 
@@ -129,50 +100,6 @@ class WPGEN_List_Table extends WP_List_Table
     }
 
 
-    public function ajax_response() {
-
-        check_ajax_referer( 'ajax-custom-list-nonce', '_ajax_custom_list_nonce' );
-
-        $this->prepare_items();
-
-        extract( $this->_args );
-        extract( $this->_pagination_args, EXTR_SKIP );
-
-        ob_start();
-        if ( ! empty( $_REQUEST['no_placeholder'] ) )
-            $this->display_rows();
-        else
-            $this->display_rows_or_placeholder();
-        $rows = ob_get_clean();
-
-        ob_start();
-        $this->print_column_headers();
-        $headers = ob_get_clean();
-
-        ob_start();
-        $this->pagination('top');
-        $pagination_top = ob_get_clean();
-
-        ob_start();
-        $this->pagination('bottom');
-        $pagination_bottom = ob_get_clean();
-
-        $response = array( 'rows' => $rows );
-        $response['pagination']['top'] = $pagination_top;
-        $response['pagination']['bottom'] = $pagination_bottom;
-        $response['column_headers'] = $headers;
-
-        if ( isset( $total_items ) )
-            $response['total_items_i18n'] = sprintf( _n( '1 item', '%s items', $total_items ), number_format_i18n( $total_items ) );
-
-        if ( isset( $total_pages ) ) {
-            $response['total_pages'] = $total_pages;
-            $response['total_pages_i18n'] = number_format_i18n( $total_pages );
-        }
-
-        die( json_encode( $response ) );
-    }
-
     /**
      * Prepare the items for the table to process
      *
@@ -184,17 +111,24 @@ class WPGEN_List_Table extends WP_List_Table
         $hidden = $this->get_hidden_columns();
         $sortable = $this->get_sortable_columns();
         $data = $this->table_data();
+
         usort( $data, array( &$this, 'sort_data' ) );
-        $perPage = 5;
-        $currentPage = $this->get_pagenum();
+        $perPage = 20;
+
+
+       $currentPage = $this->get_pagenum();
+
+
+
         $totalItems = count($data);
         $this->set_pagination_args( array(
             'total_items' => $totalItems,
             'per_page'    => $perPage,
             'total_pages'   => ceil( $totalItems / $perPage ),
+            'paged'          =>  isset($_POST['args']['paged']) ? max(0, intval($_POST['args']['paged'] -1) * 20) : 0,
             // Set ordering values if needed (useful for AJAX)
-            'orderby'   => ! empty( $_REQUEST['orderby'] ) && '' != $_REQUEST['orderby'] ? $_REQUEST['orderby'] : 'nicename',
-            'order'     => ! empty( $_REQUEST['order'] ) && '' != $_REQUEST['order'] ? $_REQUEST['order'] : 'asc'
+            'orderby'   => ! empty( $_POST['args']['orderby'] ) && '' != $_POST['args']['orderby']? $_POST['args']['orderby'] : 'nicename',
+            'order'     => ! empty( $_POST['args']['order'] ) && '' != $_POST['args']['order'] ? $_POST['args']['order'] : 'asc'
 
     ) );
         $data = array_slice($data,(($currentPage-1)*$perPage),$perPage);
@@ -247,6 +181,20 @@ class WPGEN_List_Table extends WP_List_Table
         }else{
             $role = '';
         }
+
+        if(isset($_POST['args']['order'])){
+            $order = $_POST['args']['order'];
+        }else{
+            $order = 'asc';
+        }
+
+        if(isset($_POST['args']['orderby'])){
+            $orderby = $_POST['args']['orderby'];
+        }else{
+            $orderby = 'nicename';
+        }
+
+
         $args = array(
             'role'         => '',
             'role__in'     => $role,
@@ -255,8 +203,8 @@ class WPGEN_List_Table extends WP_List_Table
             'date_query'   => array(),
             'include'      => array(),
             'exclude'      => array(),
-            'orderby'      => 'id',
-            'order'        => 'asc',
+           // 'orderby'      => $orderby,
+           // 'order'        => $order,
         );
         $allusers =  get_users($args);
         $data = array();
@@ -268,9 +216,6 @@ class WPGEN_List_Table extends WP_List_Table
                 'role'        => implode(', ', get_userdata($eauser->ID)->roles)  . "\n",
             );
         }
-
-
-
         return $data;
     }
     /**
@@ -304,14 +249,14 @@ class WPGEN_List_Table extends WP_List_Table
         $orderby = 'nicename';
         $order = 'asc';
         // If orderby is set, use this as the sort column
-        if(!empty($_GET['orderby']))
+        if(!empty($_POST['args']['orderby'] ))
         {
-            $orderby = $_GET['orderby'];
+            $orderby = $_POST['args']['orderby'] ;
         }
         // If order is set use this as the order
-        if(!empty($_GET['order']))
+        if(!empty($_POST['args']['order'] ))
         {
-            $order = $_GET['order'];
+            $order = $_POST['args']['order'];
         }
         $result = strcmp( $a[$orderby], $b[$orderby] );
         if($order === 'asc')
@@ -320,18 +265,4 @@ class WPGEN_List_Table extends WP_List_Table
         }
         return -$result;
     }
-
-
 }
-
-/**
- * Callback function for 'wp_ajax__ajax_fetch_custom_list' action hook.
- *
- * Loads the Custom List Table Class and calls ajax_response method
- */
-function ajax_fetch_custom_list_callback() {
-    $wpgenListTable = new WPGEN_List_Table();
-    $wpgenListTable->ajax_response();
-}
-add_action('wp_ajax_fetch_custom_list_callback', 'ajax_fetch_custom_list_callback');
-add_action('wp_ajax_nopriv_fetch_custom_list_callback', 'ajax_fetch_custom_list_callback');
