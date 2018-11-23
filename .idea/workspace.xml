@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ebb3538-2ab6-463e-928e-28824a252dba" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ajaxSend.js" beforeDir="false" afterPath="$PROJECT_DIR$/ajaxSend.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/_viewTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/_viewTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/listusersfiltered.css" beforeDir="false" afterPath="$PROJECT_DIR$/includes/listusersfiltered.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/listusersfiltered.php" beforeDir="false" afterPath="$PROJECT_DIR$/listusersfiltered.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/viewMain.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/viewMain.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +20,8 @@
       <file leaf-file-name="listusersfiltered.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="204" selection-start-line="204" selection-end-line="204" />
+            <state relative-caret-position="1836">
+              <caret line="115" column="21" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -35,26 +38,35 @@
       <file leaf-file-name="ajaxSend.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ajaxSend.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
+            <state relative-caret-position="1071">
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="viewMain.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="listusersfiltered.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/listusersfiltered.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewMain.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/viewMain.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="204">
+              <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_viewTable.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_viewTable.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/_viewTable.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+            <state relative-caret-position="17">
+              <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -103,10 +115,11 @@
         <option value="$PROJECT_DIR$/_inc/include.php" />
         <option value="$PROJECT_DIR$/includes/include.php" />
         <option value="$PROJECT_DIR$/ajaxTableActions.js" />
-        <option value="$PROJECT_DIR$/views/viewMain.php" />
-        <option value="$PROJECT_DIR$/listusersfiltered.php" />
-        <option value="$PROJECT_DIR$/ajaxSend.js" />
         <option value="$PROJECT_DIR$/views/_viewTable.php" />
+        <option value="$PROJECT_DIR$/includes/listusersfiltered.css" />
+        <option value="$PROJECT_DIR$/ajaxSend.js" />
+        <option value="$PROJECT_DIR$/listusersfiltered.php" />
+        <option value="$PROJECT_DIR$/views/viewMain.php" />
       </list>
     </option>
   </component>
@@ -135,16 +148,16 @@
           <expand>
             <path>
               <item name="wp-listusersfiltered" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wp-listusersfiltered" type="462c0819:PsiDirectoryNode" />
+              <item name="wp-listusersfiltered-master" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wp-listusersfiltered" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wp-listusersfiltered" type="462c0819:PsiDirectoryNode" />
+              <item name="wp-listusersfiltered-master" type="462c0819:PsiDirectoryNode" />
               <item name="includes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wp-listusersfiltered" type="b2602c69:ProjectViewProjectNode" />
-              <item name="wp-listusersfiltered" type="462c0819:PsiDirectoryNode" />
+              <item name="wp-listusersfiltered-master" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -156,6 +169,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="Errors" />
@@ -188,11 +202,13 @@
       <workItem from="1542714752234" duration="13071000" />
       <workItem from="1542800742218" duration="35348000" />
       <workItem from="1542891760553" duration="2659000" />
+      <workItem from="1542984885474" duration="2524000" />
+      <workItem from="1542987759690" duration="22000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77317000" />
+    <option name="totallyTimeSpent" value="79863000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -207,7 +223,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.20349762" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.39109698" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -252,6 +268,83 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1836">
+          <caret line="115" column="21" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/include.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ajaxSend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/listusersfiltered.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/_viewTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="37" lean-forward="true" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/viewMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3349">
+          <caret line="204" selection-start-line="204" selection-end-line="204" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/include.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ajaxSend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/viewMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/_viewTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2006">
@@ -372,9 +465,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllerUsers.php" />
-    <entry file="file://$PROJECT_DIR$/includes/listusersfiltered.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/ajaxTableActions.js" />
     <entry file="file://$PROJECT_DIR$/includes/include.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -383,31 +473,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/viewMain.php">
+    <entry file="file://$PROJECT_DIR$/includes/listusersfiltered.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="204" selection-start-line="204" selection-end-line="204" />
+        <state relative-caret-position="187">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ajaxSend.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="1071">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/listusersfiltered.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1836">
+          <caret line="115" column="21" selection-start-line="115" selection-start-column="21" selection-end-line="115" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/_viewTable.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
+        <state relative-caret-position="17">
+          <caret line="1" column="37" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/viewMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
         </state>
       </provider>
     </entry>

@@ -11,12 +11,11 @@
         ?>
     </div>
 
-
     <div class="tablenav top">
         <div class="alignleft actions bulkactions">
             <!-- onchange="callScript(this.value)" -->
             <select class="" id="cmbRole" >
-                <option selected disabled>Select role</option>
+                <option selected disabled value=""> <?php echo  esc_html__( 'Select role', 'textdomain' ) ?></option>
                 <?php foreach ($all_roles as $roleeach): ?>
                     <option value="<?php echo $roleeach['name'] ?>"><?php echo $roleeach['name'] ?></option>
                 <?php

@@ -1,3 +1,8 @@
+//estado inicial do plugin
+jQuery(document).ready(function(){
+    var args = [];
+    renderListAjax(args)
+});
 
 
 jQuery('#cmbRole').on('change', function(){
@@ -55,9 +60,16 @@ function callTablePaginationAjax(e) {
 function renderListAjax(args){
     console.log(args);
 
+    jQuery('#divAppend').html('<div id="loader"></div>');
+
+    var roleCurrent = new Array();
+    if(jQuery('#cmbRole').val() !== null){
+        roleCurrent = jQuery('#cmbRole').val();
+    }
+
     var data = {
         'action': 'luf_function',
-        'role': jQuery('#cmbRole').val(),
+        'role': roleCurrent,
         'args': args
     };
     jQuery.ajax({

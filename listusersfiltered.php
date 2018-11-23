@@ -113,7 +113,7 @@ class WPGEN_List_Table extends WP_List_Table
         $data = $this->table_data();
 
         usort( $data, array( &$this, 'sort_data' ) );
-        $perPage = 5;
+        $perPage = 10;
 
 
        $currentPage = $this->get_pagenum();
@@ -125,7 +125,7 @@ class WPGEN_List_Table extends WP_List_Table
             'total_items' => $totalItems,
             'per_page'    => $perPage,
             'total_pages'   => ceil( $totalItems / $perPage ),
-            'paged'          =>  isset($_POST['args']['paged']) ? max(0, intval($_POST['args']['paged'] -1) * 5) : 0,
+            'paged'          =>  isset($_POST['args']['paged']) ? max(0, intval($_POST['args']['paged'] -1) * 10) : 0,
             // Set ordering values if needed (useful for AJAX)
             'orderby'   => ! empty( $_POST['args']['orderby'] ) && '' != $_POST['args']['orderby']? $_POST['args']['orderby'] : 'nicename',
             'order'     => ! empty( $_POST['args']['order'] ) && '' != $_POST['args']['order'] ? $_POST['args']['order'] : 'asc'
@@ -188,7 +188,7 @@ class WPGEN_List_Table extends WP_List_Table
         if(isset($_POST['role'])){
             $role = $_POST['role'];
         }else{
-            $role = '';
+            $role = array();
         }
 
         if(isset($_POST['args']['order'])){
@@ -205,7 +205,7 @@ class WPGEN_List_Table extends WP_List_Table
 
         $args = array(
             'role'         => '',
-            'role__in'     => $role,
+            'role__in' => $role,
             'role__not_in' => array(),
             'meta_query'   => array(),
             'date_query'   => array(),
